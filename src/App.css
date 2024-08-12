@@ -1,38 +1,64 @@
-.App {
+:root {
+  --blue: #6682a9;
+  --purple: #876ba8;
+  --white: #ffffff;
+}
+
+body{
+  background-color: var(--blue);
+}
+
+.card{
+  border-radius: 15px;
+  width: 30vw;
+  margin: 100px auto;
+  padding: 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.card h1{
+  background-color: var(--purple);
+  color: var(--white);
+  text-align: center;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.input_container{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card .add_item {
+  background-color: var(--purple);
+  color: var(--white);
+  font-size: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 6px;
+  box-sizing: border-box;
+  min-width: 50px;
+  min-height: 50px;
+  font-weight: bold;
+  cursor: pointer;  
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  transition: all 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card .add_item:hover{
+  background-color: var(--white);
+  color: var(--purple);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+.card .input_container input{
+  border: 0;
+  outline: 0;
+  border-bottom: 3px solid var(--purple);
+  text-align: center;
+  margin-right: 20px;
+} 
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card .input_container input::placeholder {
+  color: gray;
+  font-size: 20px;
+  font-weight: 500;
 }
