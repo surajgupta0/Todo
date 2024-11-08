@@ -1,0 +1,15 @@
+/* static/css/styles.css */
+.completed-task td {
+    text-decoration: line-through;  /* Strikethrough */
+    color: green;  /* Optional: Make text color lighter */
+}
+
+.due-crossed {
+    background-color: #f8d7da; /* Red for overdue */
+}
+.due-soon {
+    background-color: #fff3cd; /* Yellow for due soon */
+}
+.due-normal {
+    background-color: #d4edda; /* Green for tasks with time left */
+}

@@ -1,0 +1,70 @@
+<!-- tasks/templates/base_generic.html -->
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To-Do List App</title>
+    
+
+    <!-- Load Main CSS  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> {% endcomment %}
+
+    <!-- Latest Icon CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {% comment %} <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-icons.css' %}"> {% endcomment %}
+
+        
+    <!-- Latest compiled JavaScript -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> {% endcomment %}
+
+    <!-- Latest compiled Jquery -->
+    <script src="stylesheet" href="{% static 'bootstrap/js/jquery-3.2.1.slim.min.js' %}"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> {% endcomment %}
+
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">ToDo</a>
+            <ul class="collapse navbar-collapse navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="active"><a class="nav-link" href="{% url 'task_list' %}">Home</a></li>
+            </ul>
+            <div class=" my-2 my-lg-0">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <b>Welcome, {{ user.username }}! </b>
+                                <span class="glyphicon glyphicon-user"></span>Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <span class="glyphicon glyphicon-log-in"></span>Login
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container pt-3">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

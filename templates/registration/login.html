@@ -1,0 +1,19 @@
+<!-- tasks/templates/registration/login.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Login</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="id_username">Username:</label>
+        <input type="text" name="username" id="id_username" required>
+    </div>
+    <div>
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" id="id_password" required>
+    </div>
+    <button type="submit">Login</button>
+</form>
+<p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+{% endblock %}

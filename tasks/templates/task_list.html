@@ -1,0 +1,101 @@
+<!-- tasks/templates/tasks/task_list.html -->
+{% extends "base_generic.html" %}
+{% block content %} 
+
+    <form class="form-inline my-4 create_task_form" method="POST">
+      {% csrf_token %}
+      {{ form.non_field_errors }}  <!-- Display non-field errors -->
+      {% for field in form %}
+          <div class="form-group mr-3">
+            <div class="col-sm-12 p-0">
+                {{ field }} 
+                {{ field.errors }}
+            </div>
+          </div>
+      {% endfor %}
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-12">
+          <button type="submit" class="btn btn-dark">Add Task</button>
+        </div>
+      </div>
+    </form>
+
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>
+              <a class="text-light pe-auto" href="?sort_by=title&order={% if sort_by == 'title' and order == 'asc' %}desc{% else %}asc{% endif %}">
+                Title 
+                {% if sort_by == 'title' %}
+                  {% if order == 'asc' %}
+                    <i class="bi bi-arrow-up"></i>
+                  {% else %}
+                    <i class="bi bi-arrow-down"></i>
+                  {% endif %}
+                {% else%}
+                  <i class="bi bi-arrow-down-up"></i>
+                {% endif %}
+              </a>
+            </th>
+            <th>
+              <a class="text-light pe-auto" href="?sort_by=priority&order={% if sort_by == 'priority' and order == 'asc' %}desc{% else %}asc{% endif %}">
+                Priority 
+                {% if sort_by == 'priority' %}
+                  {% if order == 'asc' %}
+                    <i class="bi bi-arrow-up font-weight-bold"></i>
+                  {% else %}
+                    <i class="bi bi-arrow-down font-weight-bold"></i>
+                  {% endif %}
+                {% else%}
+                  <i class="bi bi-arrow-down-up font-weight-bold"></i>
+                {% endif %}
+              </a>
+            </th>
+            <th>
+              <a class="text-light pe-auto" href="?sort_by=created_at&order={% if sort_by == 'created_at' and order == 'asc' %}desc{% else %}asc{% endif %}">
+                Created At
+                {% if sort_by == 'created_at' %}
+                  {% if order == 'asc' %}
+                    <i class="bi bi-arrow-up"></i>
+                  {% else %}
+                    <i class="bi bi-arrow-down"></i>
+                  {% endif %}
+                {% else%}
+                  <i class="bi bi-arrow-down-up"></i>
+                {% endif %}
+              </a>
+            </th>
+            <th>
+              <a class="text-light pe-auto" href="?sort_by=due_date&order={% if sort_by == 'due_date' and order == 'asc' %}desc{% else %}asc{% endif %}">
+                Due Date 
+                {% if sort_by == 'due_date' %}
+                  {% if order == 'asc' %}
+                    <i class="bi bi-arrow-up"></i>
+                  {% else %}
+                    <i class="bi bi-arrow-down"></i>
+                  {% endif %}
+                {% else%}
+                  <i class="bi bi-arrow-down-up"></i>
+                {% endif %}
+              </a>
+            </th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Staus</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+          <tr class="{% if task.completed %}completed-task{% endif %} {% if task.days_left is not None and task.days_left < 0 %}due-crossed{% elif task.days_left is not None and task.days_left <= 7 %}due-soon{% else %}due-normal{% endif %}">
+            <td>{{ task.title }}</td>
+            <td>{{ task.get_priority_display }}</td>
+            <td>{{task.created_at}}</td>
+            <td>{{task.due_date}}</td>
+            <td><a href="{% url 'task_edit' task.pk %}"><i class="bi bi-pencil-fill text-dark pe-auto"></i></span></a></td>
+            <td><a href="{% url 'task_delete' task.pk %}"><i class="bi bi-trash3-fill text-danger pe-auto"></i></a></td>
+            <td><a href="{% url 'task_complete' task.pk %}?sort_by={{sort_by}}&order={{order}}">{% if task.completed %}<i class="bi bi-check-square-fill text-dark pe-auto"></i>{% else %}<i class="bi bi-square text-dark"></i>{% endif %}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}
