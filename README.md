@@ -15,8 +15,8 @@ Copy code
 `git clone <repository-url>
 cd todo_project`
 ### 2. Create and activate a virtual environment:
-`python -m venv venv
-source venv/bin/activate  # On Windows use 'venv\Scripts\activate' `
+`python -m venv venv`
+`source venv/bin/activate ` # On Windows use 'venv\Scripts\activate' 
 ### 3. Install dependencies:
 `pip install -r requirements.txt`
 ### 4. Apply database migrations:
