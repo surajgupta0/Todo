@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path 
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +26,15 @@ SECRET_KEY = 'django-insecure--$=hxn-zjx-@8=yon1)e(7s$-i@_s$028&(9mj!89&ilp0hmz*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['todo-n229.onrender.com']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'todo-n229.onrender.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://todo-n229.onrender.com',
+]
 
 
 # Application definition
